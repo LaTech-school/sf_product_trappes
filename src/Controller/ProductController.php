@@ -95,6 +95,7 @@ class ProductController extends AbstractController
             // --
 
             // Creation du message de validation de la requete
+            $this->addFlash('success', "Le produit ".$product->getName()." a été créé !");
 
 
             // Redirection

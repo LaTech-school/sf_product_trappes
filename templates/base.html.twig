@@ -66,6 +66,13 @@
 
 
 
+    {# Message Flash #}
+    {% for status, messages in app.flashes %}
+    {% for message in messages %}
+    <div class="alert alert-{{ status}}">{{message}}</div>
+    {% endfor %}
+    {% endfor %}
+
 
     {% block body %}{% endblock %}
 
