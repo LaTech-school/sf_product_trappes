@@ -134,9 +134,10 @@ class ProductController extends AbstractController
     /**
      * @Route("/{id}", name=":read", methods={"HEAD","GET"})
      */
-    public function read(): Response
+    public function read(Product $product): Response
     {
         return $this->render('product/read.html.twig', [
+            'product' => $product
         ]);
     }
 
