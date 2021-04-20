@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Product;
 use App\Form\ProductType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -39,7 +40,7 @@ class ProductController extends AbstractController
     /**
      * @Route("", name=":create", methods={"HEAD","GET","POST"})
      */
-    public function create(): Response
+    public function create(Request $request): Response
     {
         // Creation du forlmulaire
         // --
@@ -51,9 +52,38 @@ class ProductController extends AbstractController
         $form = $this->createForm(ProductType::class, $product);
         // $a = $this->createForm(ProductType::class, $product);
 
+        // On capte la methode de requête HTTP
+        $form->handleRequest( $request );
 
         // Traitement du formulaire
         // --
+
+        // if ($_SERVER['REQUEST_METHOD'] === "POST")
+        // {
+        //     $name = $_POST['name'];
+        //     $description = $_POST['description'];
+        //     // Controle des données
+        //     // Ajout en BDD
+        //     $pdo->query("INSERT INTO product ('name') VALUE (\"".$name."\")");
+        // }
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            // Recupération du Manager d'Entité (Entity Manager)
+            $em = $this->getDoctrine()->getManager();
+
+            // Preparation de la requete sur l'objet $product modifié par le formulaire
+            $em->persist( $product );
+
+            // Execute la requete
+            $em->flush();
+
+
+
+            // Redirige l'utilisateur vers la page du produit
+
+        }
+
+
 
 
         // Reposne HTTP
