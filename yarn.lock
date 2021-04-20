@@ -4319,6 +4319,11 @@
   dependencies:
     "jsesc" "~0.5.0"
 
+"remixicon@^2.5.0":
+  "integrity" "sha512-q54ra2QutYDZpuSnFjmeagmEiN9IMo56/zz5dDNitzKD23oFRw77cWo4TsrAdmdkPiEn8mxlrTqxnkujDbEGww=="
+  "resolved" "https://registry.npmjs.org/remixicon/-/remixicon-2.5.0.tgz"
+  "version" "2.5.0"
+
 "renderkid@^2.0.5":
   "integrity" "sha512-ccqoLg+HLOHq1vdfYNm4TBeaCDIi1FLt3wGojTDSvdewUv65oTmI3cnT2E4hRjl1gzKZIPK+KZrXzlUYKnR+vQ=="
   "resolved" "https://registry.npmjs.org/renderkid/-/renderkid-2.0.5.tgz"
