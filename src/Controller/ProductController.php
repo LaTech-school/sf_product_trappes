@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Product;
 use App\Form\ProductType;
+use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,9 +25,20 @@ class ProductController extends AbstractController
     /**
      * @Route("s", name=":index", methods={"HEAD","GET"})
      */
-    public function index(): Response
+    public function index(ProductRepository $productRepository): Response
     {
+        // Liste des produits
+        // --
+
+        // $products = $pdo->query("SELECT * FORM catalog_product");
+        $products = $productRepository->findAll();
+
+
+        // Reponse HTTP
+        // -- 
+
         return $this->render('product/index.html.twig', [
+            'products' => $products
         ]);
     }
 
@@ -80,6 +92,15 @@ class ProductController extends AbstractController
 
 
             // Redirige l'utilisateur vers la page du produit
+            // --
+
+            // Creation du message de validation de la requete
+
+
+            // Redirection
+            return $this->redirectToRoute('product:read', [
+                'id' => $product->getId()
+            ]);
 
         }
 
