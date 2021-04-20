@@ -20,7 +20,8 @@
     </header>
 
     {# Formulaire de creation du produit #}
-    {% include "product/_form.html.twig" %}
+    {% include "product/_form.html.twig" with {form: form} only %}
+    {# {% include "product/_form.html.twig" with {d: c} only %} #}
 
 </div>
 {% endblock %}

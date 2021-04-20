@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Product;
+use App\Form\ProductType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -42,6 +44,13 @@ class ProductController extends AbstractController
         // Creation du forlmulaire
         // --
 
+        // Nouvelle entité
+        $product = new Product;
+
+        // Creation du formulaire
+        $form = $this->createForm(ProductType::class, $product);
+        // $a = $this->createForm(ProductType::class, $product);
+
 
         // Traitement du formulaire
         // --
@@ -49,8 +58,18 @@ class ProductController extends AbstractController
 
         // Reposne HTTP
         // --
-        
+
+        // Creation de la vue du formulaire
+        $form = $form->createView();
+        // $b = $a->createView();
+
+
         return $this->render('product/create.html.twig', [
+
+            // Transmission du formulaire à la vue twig
+            'form' => $form,
+            // 'c' => $b,
+
         ]);
     }
 
