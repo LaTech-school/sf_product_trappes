@@ -39,6 +39,17 @@ class ProductController extends AbstractController
      */
     public function create(): Response
     {
+        // Creation du forlmulaire
+        // --
+
+
+        // Traitement du formulaire
+        // --
+
+
+        // Reposne HTTP
+        // --
+        
         return $this->render('product/create.html.twig', [
         ]);
     }
