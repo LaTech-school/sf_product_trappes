@@ -21,12 +21,35 @@
 
 
     {# Barre d'actions (ajouter un produit) #}
-    <div class="page-toolbar text-right">
+    <div class="page-toolbar text-right mt-3">
         <a href="{{ path('product:create') }}" class="btn btn-primary btn-sm"><i class="ri-add-circle-line"></i> Ajouter un produit</a>
     </div>
 
 
     {# Tableau de la liste des produits #}
+    <table class="table table-hover mt-5">
+        {# Entete du tableau HTML #}
+        <thead class="thead-dark">
+            <tr>
+                <th>#</th>
+                <th>Product Name</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        {# Corps du tableau HTML #}
+        <tbody>
+
+            {# Boucle sur la liste des produits #}
+            <tr>
+                <td>ID</td>
+                <td>Name</td>
+                <td>lien edit / show</td>
+            </tr>
+
+        </tbody>
+
+    </table>
 
 
 </div>
