@@ -28,7 +28,10 @@
 
 
     {# Formulaire de creation du produit #}
-    {% include "product/_form.html.twig" with {form: form} only %}
+    {% include "product/_form.html.twig" with {
+        form: form,
+        btn_label: "Modifier le produit"
+    } only %}
 
 
 </div>
