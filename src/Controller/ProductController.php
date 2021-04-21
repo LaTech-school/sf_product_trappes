@@ -106,15 +106,12 @@ class ProductController extends AbstractController
         }
 
 
-
-
         // Reposne HTTP
         // --
 
         // Creation de la vue du formulaire
         $form = $form->createView();
         // $b = $a->createView();
-
 
         return $this->render('product/create.html.twig', [
 
@@ -152,9 +149,60 @@ class ProductController extends AbstractController
     /**
      * @Route("/{id}/edit", name=":update", methods={"HEAD","GET","POST"})
      */
-    public function update(): Response
+    public function update(Product $product, Request $request): Response
     {
+        // Creation du forlmulaire
+        // --
+
+        // Nouvelle entité
+        // /!\ l'entité est déja créée avec le paramètre $product de la méthode create()
+
+        // Creation du formulaire
+        $form = $this->createForm(ProductType::class, $product);
+
+        // On capte la methode de requête HTTP
+        $form->handleRequest( $request );
+
+        // Traitement du formulaire
+        // --
+
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            // Recupération du Manager d'Entité (Entity Manager)
+            $em = $this->getDoctrine()->getManager();
+
+            // Preparation de la requete sur l'objet $product modifié par le formulaire
+            $em->persist( $product );
+
+            // Execute la requete
+            $em->flush();
+
+
+
+            // Redirige l'utilisateur vers la page du produit
+            // --
+
+            // Creation du message de validation de la requete
+            $this->addFlash('success', "Le produit ".$product->getName()." a été modifié !");
+
+
+            // Redirection
+            return $this->redirectToRoute('product:read', [
+                'id' => $product->getId()
+            ]);
+
+        }
+
+
+        // Reposne HTTP
+        // --
+
+        // Creation de la vue du formulaire
+        $form = $form->createView();
+
         return $this->render('product/update.html.twig', [
+            'product' => $product,
+            'form' => $form,
         ]);
     }
 
