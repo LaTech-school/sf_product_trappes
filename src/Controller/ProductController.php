@@ -216,9 +216,41 @@ class ProductController extends AbstractController
     /**
      * @Route("/{id}/delete", name=":delete", methods={"HEAD","GET","DELETE"})
      */
-    public function delete(): Response
+    public function delete(Product $product, Request $request): Response
     {
+        // Test de la methode HTTP / soumission du formulaire
+        // --
+
+        // Test la methode HTTP: doit etre "DELETE"
+        if ($request->getMethod() == 'DELETE')
+        {
+            // Recupération du Manager d'Entité (Entity Manager)
+            $em = $this->getDoctrine()->getManager();
+
+            // Preparation de la requete de suppression sur l'objet $product 
+            // /!\ on utilise "remove" et non "persist"
+            $em->remove( $product );
+
+            // Execute la requete
+            $em->flush();
+
+
+            // Redirection de l'utilisateur vers la liste des produits
+            // --
+
+            // Message flash de confirmation de la suppression
+            $this->addFlash('success', "Le produit ". $product->getName() ." à été supprimé.");
+
+            // Redirection
+            return $this->redirectToRoute('product:index');
+        }
+
+
+        // Affichage du message de confirmation d'execution de la suppression
+        // --
+
         return $this->render('product/delete.html.twig', [
+            'product' => $product,
         ]);
     }
 }
