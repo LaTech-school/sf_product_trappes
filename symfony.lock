@@ -103,6 +103,12 @@
     "nikic/php-parser": {
         "version": "v4.10.4"
     },
+    "pear/math_biginteger": {
+        "version": "v1.0.3"
+    },
+    "pear/numbers_words": {
+        "version": "v0.18.2"
+    },
     "phpdocumentor/reflection-common": {
         "version": "2.2.0"
     },
