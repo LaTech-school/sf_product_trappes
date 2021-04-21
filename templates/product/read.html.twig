@@ -24,6 +24,7 @@
     <div class="page-toolbar text-right mt-3">
         <a href="{{ path('product:create') }}" class="btn btn-primary btn-sm"><i class="ri-add-circle-line"></i> Ajouter un produit</a>
         <a href="{{ path('product:update', {id: product.id})}}" class="btn btn-warning btn-sm">Modifer la fiche produit</a>
+        <a href="{{ path('product:delete', {id: product.id}) }}" class="btn btn-danger btn-sm">Supprimer le produit</a>
     </div>
 
 
