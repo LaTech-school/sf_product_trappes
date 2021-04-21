@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+
+{# Page Settings #}
+{% set title = "Tous nos livres" %}
+
+
+{# Page Title #}
+{% block title %}{{ title }} - {{ parent() }}{% endblock %}
+
+
+{# Page Content #}
+{% block body %}
+<div class="container">
+
+
+    {# Header / Titre de la page #}
+    <header class="page-header">
+        <h1 class="page-title">{{ title }}</h1>
+    </header>
+
+
+    {# Barre d'actions (ajouter un livre) #}
+    <div class="page-toolbar text-right mt-3">
+        <a href="{{ path('book:create') }}" class="btn btn-primary btn-sm"><i class="ri-add-circle-line"></i> Ajouter un livre</a>
+    </div>
+
+
+    {# Tableau de la liste des livres #}
+    <table class="table table-hover mt-5">
+        {# Entete du tableau HTML #}
+        <thead class="thead-dark">
+            <tr>
+                <th>#</th>
+                <th>Book Title</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        {# Corps du tableau HTML #}
+        <tbody>
+
+            {# Boucle sur la liste des livres #}
+            {% for book in books %}
+            <tr>
+                <td>{{ book.id }}</td>
+                <td>{{ book.title }}</td>
+                <td>
+
+                    {# Lien vers la page de modification #}
+                    <a href="{{ path('book:update', {id: book.id}) }}">edit</a>
+
+                    {# Lien vers la page de detail #}
+                    <a href="{{ path('book:read', {id: book.id}) }}">show</a>
+                    
+                </td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+
+</div>
+{% endblock %}
